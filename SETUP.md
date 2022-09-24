@@ -1,7 +1,7 @@
 # Manual
 
 ```shell
-golangci-lint run
+golangci-lint run --fix
 ```
 
 ```shell
