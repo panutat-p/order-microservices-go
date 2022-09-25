@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+swag init -g ./cmd/main.go -o ./docs
 golangci-lint run
 go test ./...
