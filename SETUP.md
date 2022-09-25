@@ -27,9 +27,13 @@ git config --unset core.hooksPath
 
 ```shell
 go mod init github.com/panutat-p/order-microservices-go
-go get github.com/labstack/echo/v4
 
+go install github.com/swaggo/swag/cmd/swag@latest
+go install github.com/joho/godotenv/cmd/godotenv@latest
+
+go get github.com/labstack/echo/v4
 go install github.com/swaggo/swag/cmd/swag@latest
 go get -u github.com/swaggo/echo-swagger
 go get -u github.com/swaggo/swag/cmd/swag
+go get go.mongodb.org/mongo-driver/mongo
 ```
