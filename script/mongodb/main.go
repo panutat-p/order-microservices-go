@@ -25,7 +25,7 @@ func main() {
 	}
 	uri := os.Getenv("MONGODB_URI")
 	if uri == "" {
-		log.Fatal("Failed to load ENV file")
+		log.Fatal("🟥 Failed to load ENV file")
 	}
 
 	opt := options.Client().ApplyURI(uri)
