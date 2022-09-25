@@ -1,18 +1,6 @@
 # Manual
 
 ```shell
-golangci-lint run --fix
-```
-
-```shell
-gofmt -s -w .
-```
-
-```shell
-gofmt -s -w cmd/learn-go-kratos/main.go
-```
-
-```shell
 git commit -m "any message" --no-verify
 ```
 
