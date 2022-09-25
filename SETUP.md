@@ -13,7 +13,7 @@ echo "module.exports = { extends: ['@commitlint/config-conventional'] };" > comm
 ```shell
 husky install
 
-husky add .husky/pre-commit  "golangci-lint run"
+husky add .husky/pre-commit  "golangci-lint run --fix"
 husky add .husky/pre-commit "go test ./..."
 husky add .husky/pre-commit "swag init -g ./cmd/main.go -o ./docs"
 husky add .husky/commit-msg  "npx --no -- commitlint --edit ${1}"
