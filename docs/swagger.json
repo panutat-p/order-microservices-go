@@ -23,6 +23,54 @@
                     }
                 }
             }
+        },
+        "/reflect": {
+            "post": {
+                "description": "reflect back the request body",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "reflect"
+                ],
+                "summary": "ping-pong Route",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.Req"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Req"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handler.Req": {
+            "description": "Request body",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
         }
     }
 }

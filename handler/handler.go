@@ -21,7 +21,7 @@ type Handler struct {
 }
 
 func New(e *echo.Echo, port string) (*Handler, error) {
-	if e != nil {
+	if e == nil {
 		return nil, handlerErr
 	}
 
@@ -46,6 +46,7 @@ func New(e *echo.Echo, port string) (*Handler, error) {
 func (h *Handler) RunServer() error {
 	h.Router.GET("/swagger/*", echoSwagger.WrapHandler)
 	h.Router.GET("/", h.healthCheck)
+	h.Router.POST("/reflect", h.reflectReq)
 
 	s := http.Server{
 		ReadTimeout: ReadTimeOut * time.Second,

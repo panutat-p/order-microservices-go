@@ -1,3 +1,12 @@
+definitions:
+  handler.Req:
+    description: Request body
+    properties:
+      id:
+        type: string
+      msg:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
@@ -14,4 +23,26 @@ paths:
       summary: Readiness Probe
       tags:
       - health
+  /reflect:
+    post:
+      consumes:
+      - application/json
+      description: reflect back the request body
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.Req'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.Req'
+      summary: ping-pong Route
+      tags:
+      - reflect
 swagger: "2.0"
