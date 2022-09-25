@@ -1,1 +1,14 @@
+# health check
 GET http://localhost:8080
+
+###
+
+# swagger
+GET http://localhost:8080/swagger/index.html
+
+###
+
+# hello
+GET http://localhost:8080/hello
+
+###
