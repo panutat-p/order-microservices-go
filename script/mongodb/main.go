@@ -32,19 +32,15 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), MongoTimeout*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, opt)
-	if err != nil {
-		defer log.Fatal(err)
-	}
-
-	if err != nil {
-		fmt.Println("🟥 Failed to connect to MongoDB")
-		panic(err)
-	}
 	defer func() {
 		if err := client.Disconnect(context.TODO()); err != nil {
 			panic(err)
 		}
 	}()
+	if err != nil {
+		fmt.Println("🟥 Failed to connect to MongoDB")
+		panic(err)
+	}
 	coll := client.Database("sample_mflix").Collection("movies")
 	title := "Back to the Future"
 	var result bson.M
