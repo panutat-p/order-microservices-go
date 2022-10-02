@@ -6,9 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/panutat-p/order-microservices-go/core/service"
-
 	"github.com/labstack/echo/v4"
+	"github.com/panutat-p/order-microservices-go/core/service"
 	_ "github.com/panutat-p/order-microservices-go/docs"
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
@@ -52,6 +51,7 @@ func (h *Handler) RunServer() error {
 	h.Router.GET("/", h.healthCheck)
 	h.Router.POST("/reflect", h.reflectReq)
 	h.Router.GET("/list", h.listOrders)
+	h.Router.POST("/create", h.createOrder)
 
 	s := http.Server{
 		ReadTimeout: ReadTimeOut * time.Second,
