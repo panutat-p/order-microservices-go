@@ -6,10 +6,10 @@ import (
 )
 
 type OrderService struct {
-	store port.OrderStore
+	store port.OrderStorer
 }
 
-func NewOrderService(orderStore port.OrderStore) OrderService {
+func NewOrderService(orderStore port.OrderStorer) OrderService {
 	return OrderService{
 		store: orderStore,
 	}
