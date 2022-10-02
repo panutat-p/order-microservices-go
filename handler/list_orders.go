@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -13,7 +12,7 @@ type ListOrdersRes struct {
 }
 
 // @Summary      listOrders Route
-// @Description  reflect back the request body
+// @Description  list all orders of the specified type
 // @Tags         list
 // @Accept       json
 // @Produce      json
@@ -22,7 +21,6 @@ type ListOrdersRes struct {
 // @Router       /list		[get]
 func (h *Handler) listOrders(c echo.Context) error {
 	orderType := c.QueryParam("type")
-	fmt.Println("🟨 orderType:", orderType)
 	orders, err := h.OrderService.List(orderType)
 	if err != nil {
 		return c.JSON(http.StatusOK, map[string]string{"error": err.Error()})
