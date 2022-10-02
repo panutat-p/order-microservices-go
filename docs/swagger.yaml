@@ -1,4 +1,42 @@
 definitions:
+  domain.Order:
+    properties:
+      country:
+        type: string
+      item_type:
+        type: string
+      order_date:
+        type: string
+      order_id:
+        type: integer
+      order_priority:
+        type: string
+      region:
+        type: string
+      sales_channel:
+        type: string
+      ship_date:
+        type: string
+      total_cost:
+        type: number
+      total_profit:
+        type: number
+      total_revenue:
+        type: number
+      unit_cost:
+        type: number
+      unit_price:
+        type: number
+      units_sold:
+        type: integer
+    type: object
+  handler.ListOrdersRes:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.Order'
+        type: array
+    type: object
   handler.Req:
     description: Request body
     properties:
@@ -23,6 +61,27 @@ paths:
       summary: Readiness Probe
       tags:
       - health
+  /list:
+    get:
+      consumes:
+      - application/json
+      description: reflect back the request body
+      parameters:
+      - description: Order Type
+        in: query
+        name: type
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListOrdersRes'
+      summary: listOrders Route
+      tags:
+      - list
   /reflect:
     post:
       consumes:
@@ -42,7 +101,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handler.Req'
-      summary: ping-pong Route
+      summary: reflectReq Route
       tags:
       - reflect
 swagger: "2.0"

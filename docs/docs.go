@@ -36,6 +36,38 @@ const docTemplate = `{
                 }
             }
         },
+        "/list": {
+            "get": {
+                "description": "reflect back the request body",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "list"
+                ],
+                "summary": "listOrders Route",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Order Type",
+                        "name": "type",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ListOrdersRes"
+                        }
+                    }
+                }
+            }
+        },
         "/reflect": {
             "post": {
                 "description": "reflect back the request body",
@@ -48,7 +80,7 @@ const docTemplate = `{
                 "tags": [
                     "reflect"
                 ],
-                "summary": "ping-pong Route",
+                "summary": "reflectReq Route",
                 "parameters": [
                     {
                         "description": "Request body",
@@ -72,6 +104,64 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "domain.Order": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "item_type": {
+                    "type": "string"
+                },
+                "order_date": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "integer"
+                },
+                "order_priority": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "sales_channel": {
+                    "type": "string"
+                },
+                "ship_date": {
+                    "type": "string"
+                },
+                "total_cost": {
+                    "type": "number"
+                },
+                "total_profit": {
+                    "type": "number"
+                },
+                "total_revenue": {
+                    "type": "number"
+                },
+                "unit_cost": {
+                    "type": "number"
+                },
+                "unit_price": {
+                    "type": "number"
+                },
+                "units_sold": {
+                    "type": "integer"
+                }
+            }
+        },
+        "handler.ListOrdersRes": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.Order"
+                    }
+                }
+            }
+        },
         "handler.Req": {
             "description": "Request body",
             "type": "object",
