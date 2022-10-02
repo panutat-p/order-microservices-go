@@ -36,9 +36,43 @@ const docTemplate = `{
                 }
             }
         },
+        "/create": {
+            "post": {
+                "description": "create a new order",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "reflect"
+                ],
+                "summary": "createOrder\tRoute",
+                "parameters": [
+                    {
+                        "description": "Order Info",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Req"
+                        }
+                    }
+                }
+            }
+        },
         "/list": {
             "get": {
-                "description": "reflect back the request body",
+                "description": "list all orders of the specified type",
                 "consumes": [
                     "application/json"
                 ],

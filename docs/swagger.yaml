@@ -61,11 +61,33 @@ paths:
       summary: Readiness Probe
       tags:
       - health
+  /create:
+    post:
+      consumes:
+      - application/json
+      description: create a new order
+      parameters:
+      - description: Order Info
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.Req'
+      summary: "createOrder\tRoute"
+      tags:
+      - reflect
   /list:
     get:
       consumes:
       - application/json
-      description: reflect back the request body
+      description: list all orders of the specified type
       parameters:
       - description: Order Type
         in: query
