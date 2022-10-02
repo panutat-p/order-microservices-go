@@ -35,11 +35,11 @@ linters:
     - gofmt
     - goheader
     - goimports
-    - gomnd
+#    - gomnd
     - gomoddirectives
     - gomodguard
     - goprintffuncname
-    - gosec
+#    - gosec
     - gosimple
     - govet
   disable:
