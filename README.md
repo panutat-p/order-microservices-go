@@ -2,6 +2,7 @@ https://github.com/pallat/orderms
 https://excelbianalytics.com/wp/downloads-18-sample-csv-files-data-sets-for-testing-sales/
 
 ```shell
+go generate ./...
 swag init -g ./handler/handler.go -o ./docs
 go run cmd/main.go
 ```
