@@ -13,7 +13,7 @@ type Req struct {
 	Msg string `json:"msg"`
 }
 
-// @Summary      ping-pong Route
+// @Summary      reflectReq Route
 // @Description  reflect back the request body
 // @Tags         reflect
 // @Accept       json

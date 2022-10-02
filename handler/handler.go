@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/panutat-p/order-microservices-go/core/service"
+
 	"github.com/labstack/echo/v4"
 	_ "github.com/panutat-p/order-microservices-go/docs"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -16,18 +18,20 @@ const ReadTimeOut = 3
 var handlerErr = errors.New("cannot init echo web server")
 
 type Handler struct {
-	Router *echo.Echo
-	Port   string
+	Router       *echo.Echo
+	Port         string
+	OrderService service.OrderService
 }
 
-func New(e *echo.Echo, port string) (*Handler, error) {
+func New(e *echo.Echo, port string, orderService service.OrderService) (*Handler, error) {
 	if e == nil {
 		return nil, handlerErr
 	}
 
 	return &Handler{
-		Router: e,
-		Port:   port,
+		Router:       e,
+		Port:         port,
+		OrderService: orderService,
 	}, nil
 }
 
@@ -47,6 +51,7 @@ func (h *Handler) RunServer() error {
 	h.Router.GET("/swagger/*", echoSwagger.WrapHandler)
 	h.Router.GET("/", h.healthCheck)
 	h.Router.POST("/reflect", h.reflectReq)
+	h.Router.GET("/list", h.listOrders)
 
 	s := http.Server{
 		ReadTimeout: ReadTimeOut * time.Second,
