@@ -26,7 +26,7 @@ git config --unset core.hooksPath
 ```
 
 ```shell
-go mod init github.com/panutat-p/order-microservices-go
+go mod init github.com/panutat-p/domain-microservices-go
 
 go install github.com/swaggo/swag/cmd/swag@latest
 go install github.com/joho/godotenv/cmd/godotenv@latest
